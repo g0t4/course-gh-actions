@@ -2,14 +2,11 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -23,7 +20,6 @@ var summaries = new[]
 
 app.MapGet("/sensitive", (string? password) =>
 {
-    // w00h00 this sets off codeql query
     if (password == "duckfoot335!")
     {
         return "You have access! Good job using the correct password: duckfoot335!";
@@ -34,10 +30,8 @@ app.MapGet("/sensitive", (string? password) =>
     }
 });
 
-// declared but not initialized (should have no accesses?)
 int foo;
 
-// randomly generated, but a consistent set of forecasts for testing purposes
 var consistentForecasts = Enumerable.Range(1, 5).Select(index =>
     new WeatherForecast
     (
