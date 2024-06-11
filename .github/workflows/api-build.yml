@@ -1,0 +1,25 @@
+name: api-build
+
+on:
+  push:
+    paths:
+      - ".github/workflows/api-build.yml"
+      - "api/**"
+  workflow_dispatch: # manual
+
+jobs:
+  build:
+    name: build-dotnet-api
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: dotnet --list-runtimes
+      - run: dotnet --list-sdks
+      - run: dotnet build
+        working-directory: ./api
+
+
+
+# *** notes:
+# steps[*].working-directory: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsworking-directory
+# path filter globs: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
