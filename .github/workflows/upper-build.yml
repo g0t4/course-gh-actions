@@ -19,7 +19,9 @@ jobs:
         with:
           # go-version: '1.22'
           go-version-file: ./upper/go.mod
-      - run: go version
+          cache-dependency-path: ./upper/go.sum
+      - run: go mod download
+        working-directory: upper
       - run: |
           ls
           go build
