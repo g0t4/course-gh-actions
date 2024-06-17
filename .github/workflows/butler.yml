@@ -1,0 +1,13 @@
+name: butler
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  chat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ca-dp/code-butler@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
