@@ -1,6 +1,8 @@
 name: thanks
 
 on:
+  issues:
+    types: opened
   workflow_dispatch: # manual
 
 jobs:
