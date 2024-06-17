@@ -14,6 +14,6 @@ jobs:
       - run: gh --version
       - run: gh auth status
       - run: gh repo list
+      - run: gh issue list
       - run: gh workflow list
-      - run: gh run list
       - run: gh api /repos/:owner/:repo/actions/workflows
