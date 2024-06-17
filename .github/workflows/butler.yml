@@ -8,11 +8,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  log:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo 'comment ${{ github.event.comment.body }}'
-      - run: echo '${{ toJson(github.event) }}'
+  # log:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: echo 'comment ${{ github.event.comment.body }}'
+  #     - run: echo '${{ toJson(github.event) }}'
   chat:
     if: contains(github.event.comment.body, '/chat')
     runs-on: ubuntu-latest
