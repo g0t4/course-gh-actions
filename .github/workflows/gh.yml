@@ -9,6 +9,8 @@ on:
 jobs:
   cli:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - run: env
       - run: gh --version
