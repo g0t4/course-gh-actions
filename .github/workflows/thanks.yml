@@ -8,6 +8,8 @@ on:
 jobs:
   thanks:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - uses: actions/github-script@v7
         id: issue_script
