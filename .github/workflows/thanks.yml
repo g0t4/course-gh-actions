@@ -1,0 +1,44 @@
+name: thanks
+
+on:
+  workflow_dispatch: # manual
+
+jobs:
+  thanks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        id: issue_script
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue_number = context.issue.number || 2;
+            console.log(`issue_number: ${issue_number}`);
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // lookup issue info
+            result = await github.rest.issues.get({
+              repo, owner, issue_number
+            });
+            console.log(`result: ${result}`);
+
+            // create comment thanking contributor
+            const comment = await github.rest.issues.createComment({
+              repo, owner, issue_number,
+              body: "Thanks for your contribution!"
+            });
+            console.log(`comment id: ${comment.data.id}`);
+            console.log(comment.data);
+
+            // auto label
+            github.rest.issues.addLabels({
+              repo, owner, issue_number,
+              labels: ['todo-review']
+            })
+
+            // make comment id available to subsequent steps
+            return comment.data.id;
+
+      - run: echo 'comment id=${{ steps.issue_script.outputs.result }}'
