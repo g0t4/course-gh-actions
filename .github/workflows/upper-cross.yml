@@ -9,6 +9,8 @@ on:
 
 jobs:
   cross:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -21,7 +23,7 @@ jobs:
           cache-dependency-path: ./upper/go.sum
       - run: ./build.xplat.sh
       - uses: softprops/action-gh-release@v2
-        with: 
+        with:
           files: ./upper/bin/upper*
           body: "Binaries for the upper (go) command line tool"
           tag_name: ${{ github.ref_name }}
