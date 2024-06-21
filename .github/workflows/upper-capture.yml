@@ -28,5 +28,5 @@ jobs:
       - run: go test -v
       - uses: actions/upload-artifact@v4
         with:
-          path: ./upper/upper
+          path: ./upper/upper*
           name: "build-${{ matrix.os }}"
