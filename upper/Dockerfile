@@ -24,7 +24,11 @@ RUN --mount=type=cache,target=/go/pkg/mod/ \
 
 FROM alpine:latest AS final
 
+# LABEL org.opencontainers.image.source="https://github.com/g0t4/course-gh-actions"
+LABEL org.opencontainers.image.description="upper command, written in go"
+LABEL org.opencontainers.image.licenses=MIT
 
 COPY --from=build /bin/upper /bin/
+
 
 ENTRYPOINT [ "/bin/upper" ]
