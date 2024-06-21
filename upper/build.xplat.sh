@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-# echo "::group::Testing..."
+echo "::group::Testing..."
 go test -v
-# echo "::endgroup::"
+echo "::endgroup::"
 
 APP_NAME=upper
 OUTPUT_DIR=bin
@@ -21,13 +21,13 @@ do
         output_name+='.exe'
     fi
 
-    # echo "::group::Building $output_name..."
+    echo "::group::Building $output_name..."
     go clean # remove prior build (triggers more logging too)
     env GOOS=$GOOS GOARCH=$GOARCH go build -x -o $output_name .
-    # echo "::endgroup::"
+    echo "::endgroup::"
 
 done
 
-# echo "::group::tree..."
+echo "::group::tree..."
 tree
-# echo "::endgroup::"
+echo "::endgroup::"
