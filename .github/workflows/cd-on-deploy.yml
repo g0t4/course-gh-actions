@@ -1,0 +1,10 @@
+name: cd-on-deploy
+
+on:
+  deployment: # trigger when a deployment is created
+
+jobs:
+  alerts:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "sending slack alert to get deploy approved..."
