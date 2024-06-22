@@ -31,3 +31,8 @@ jobs:
       - uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/webapps-deploy@v3
+        with:
+          app-name: gh-actions-web-api
+          images: weshigbee/actions-web:latest
+          resource-group-name: gh-actions
