@@ -26,12 +26,14 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
+      url: ${{ steps.deploy.outputs.webapp-url }}
     # needs: build
     steps:
       - uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: azure/webapps-deploy@v3
+        id: deploy
         with:
           app-name: gh-actions-web-api
           images: weshigbee/actions-web:latest
