@@ -1,0 +1,10 @@
+services:
+  api:
+    image: weshigbee/actions-web:latest
+    build:
+      context: .
+      target: runner
+      platforms:
+        - linux/amd64
+    ports:
+      - 8080:80
