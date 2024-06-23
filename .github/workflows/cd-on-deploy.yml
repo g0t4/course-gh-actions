@@ -8,3 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "sending slack alert to get deploy approved..."
+      - run: echo "${{ toJson(github.event) }}"
