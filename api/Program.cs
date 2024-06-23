@@ -25,14 +25,7 @@ var summaries = new[]
 
 app.MapGet("/sensitive", (string? password) =>
 {
-    if (password == "duckfoot335!")
-    {
-        return "You have access! Good job using the correct password: duckfoot335!";
-    }
-    else
-    {
-        return "Access denied!";
-    }
+    return "Access denied!";
 });
 
 int foo;
