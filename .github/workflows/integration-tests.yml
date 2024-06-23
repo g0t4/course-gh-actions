@@ -8,6 +8,8 @@ on:
 
 jobs:
   generate:
+    outputs:
+      RANDOM_PASSWORD: ${{ env.RANDOM_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - run: env | sort
@@ -15,3 +17,8 @@ jobs:
       - run: echo "$RANDOM_PASSWORD / ${{ env.RANDOM_PASSWORD }}"
       - run: env | sort
       # - run: mysql ... -p $RANDOM_PASSWORD
+  testing:
+    runs-on: ubuntu-latest
+    needs: generate
+    steps:
+      - run: echo "${{ needs.generate.outputs.RANDOM_PASSWORD }}"
