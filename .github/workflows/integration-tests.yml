@@ -1,0 +1,17 @@
+name: integration-tests
+
+on:
+  push:
+    paths:
+      - ".github/workflows/integration-tests.yml"
+  workflow_dispatch: # manual
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - run: env | sort
+      - run: echo "RANDOM_PASSWORD=$(LC_ALL=C tr -dc A-Za-z0-9 </dev/urandom | head -c 12)" >> "$GITHUB_ENV"
+      - run: echo "$RANDOM_PASSWORD / ${{ env.RANDOM_PASSWORD }}"
+      - run: env | sort
+      # - run: mysql ... -p $RANDOM_PASSWORD
